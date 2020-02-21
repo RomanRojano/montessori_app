@@ -9,7 +9,9 @@ class HomePageScreen extends StatelessWidget {
   selectProductsOverview(BuildContext context) {
     Navigator.of(context).pushNamed(ProductsOverviewScreen.routeName);
   }
-
+  selectConfiguracionScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(ConfiguracionScreen.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,6 @@ class HomePageScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 40,
                   color: Colors.white,
-
                 )
               ),
               const SizedBox(height: 30),
@@ -64,7 +65,7 @@ class HomePageScreen extends StatelessWidget {
         )
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => print('Configuracion'),
+        onPressed: () => selectConfiguracionScreen(context),
         tooltip: 'Increment',
         child: Icon(Icons.settings),
         backgroundColor: Colors.lightBlue,
