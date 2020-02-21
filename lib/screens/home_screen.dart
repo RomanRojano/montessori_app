@@ -39,7 +39,7 @@ class HomePageScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () => selectProductsOverview(context),
                 textColor: Colors.white,
                 padding: const EdgeInsets.all(0.0),
                 child: Container(
