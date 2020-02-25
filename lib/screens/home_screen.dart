@@ -23,7 +23,7 @@ class HomePageScreen extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/fondo_cmdch_2.jpg"),
-            fit:BoxFit.cover,
+            fit:BoxFit.fill,
           ),
         ),
         child: Center(
@@ -35,7 +35,7 @@ class HomePageScreen extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 40,
-                  color: Colors.white,
+                  color: Colors.yellow,
                 )
               ),
               const SizedBox(height: 30),
