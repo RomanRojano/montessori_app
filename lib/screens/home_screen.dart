@@ -66,7 +66,7 @@ class HomePageScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => selectConfiguracionScreen(context),
-        tooltip: 'Increment',
+        tooltip: 'Configuración',
         child: Icon(Icons.settings),
         backgroundColor: Colors.lightBlue,
       ),
