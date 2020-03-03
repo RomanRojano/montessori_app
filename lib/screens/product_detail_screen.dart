@@ -15,7 +15,7 @@ class ProductDetailScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text('Detalle del Aviso.'),
         ),
-        body: Center(
+        body: SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.all(10),
               child: Column(
@@ -30,7 +30,13 @@ class ProductDetailScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Image.network(args.image),
+                  Container(
+                    height: 300,
+                    width: double.infinity,
+                    child: Image.network(args.image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   SizedBox(height: 20),
                   Text(args.description,
                     style: TextStyle(
