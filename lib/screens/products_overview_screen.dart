@@ -73,45 +73,51 @@ class ProductsOverviewScreen extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(2.0, 10.0, 2.0, 10.0),
           children: <Widget>[
             ProductBox(
-              name: 'Aviso Num. 1',
-              description: 'Descripcion Corta de Aviso Num 1',
+              name: 'Campeones Liga Municipal',
+              description: 'Abejitas gana la liga municipal 2019.',
               image:
-                  'https://s3.amazonaws.com/uifaces/faces/twitter/namankreative/128.jpg',
+                  'http://tisdc.ddns.net:8000/static/montessori/img01.jpg',
+                  //'https://s3.amazonaws.com/uifaces/faces/twitter/namankreative/128.jpg',
               id: 1,
             ),
             ProductBox(
-              name: 'Aviso Num. 2',
-              description: 'Descripcion Corta de Aviso Num 2',
+              name: 'Majalca en Seattle',
+              description: 'Destacada participacion de docentes en Seattle WA.',
               image:
-                  'https://s3.amazonaws.com/uifaces/faces/twitter/sasha_shestakov/128.jpg',
+                  'http://tisdc.ddns.net:8000/static/montessori/img02.jpg',
+                  //'https://s3.amazonaws.com/uifaces/faces/twitter/sasha_shestakov/128.jpg',
               id: 2,
             ),
             ProductBox(
-              name: 'Aviso Num. 3',
-              description: 'Descripcion Corta de Aviso Num 3',
+              name: 'Conferencia Magna.',
+              description: 'Habilidades de resilencia en la familia.',
               image:
-                  'https://s3.amazonaws.com/uifaces/faces/twitter/matkins/128.jpg',
+                  'http://tisdc.ddns.net:8000/static/montessori/img03.jpg',
+                  //'https://s3.amazonaws.com/uifaces/faces/twitter/matkins/128.jpg',
               id: 3,
             ),
             ProductBox(
-              name: 'Aviso Num. 4',
-              description: 'Descripcion Corta de Aviso Num 4',
+              name: 'Pláticas Matutinas.',
+              description: 'Lo que deberias saber sobre tu hijo.',
               image:
-                  'https://s3.amazonaws.com/uifaces/faces/twitter/manigm/128.jpg',
+                'http://tisdc.ddns.net:8000/static/montessori/img04.png',
+                  //'https://s3.amazonaws.com/uifaces/faces/twitter/manigm/128.jpg',
               id: 4,
             ),
             ProductBox(
-              name: 'Aviso Num. 5',
-              description: 'Descripcion Corta de Aviso Num 5',
+              name: 'Convocatoria Deportiva.',
+              description: 'Invitación a integrar un equipo de soccer femenil.',
               image:
-                  'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
+              'http://tisdc.ddns.net:8000/static/montessori/img05.jpg',
+                  //'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
               id: 5,
             ),
             ProductBox(
-              name: 'Aviso Num. 6',
-              description: 'Descripcion Corta de Aviso Num 6',
+              name: 'Inicio de campaña.',
+              description: 'Campaña nacional de reforestación.',
               image:
-                  'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
+                  'http://tisdc.ddns.net:8000/static/montessori/img06.jpg',
+                  //'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
               id: 6,
             ),
           ],

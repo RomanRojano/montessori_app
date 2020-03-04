@@ -1,5 +1,6 @@
 //import 'dart:js';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:montessori_app/screens/products_overview_screen.dart';
 
@@ -45,6 +46,7 @@ class ProductDetailScreen extends StatelessWidget {
                       fontStyle: FontStyle.italic,
                       color: Colors.white,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 10),
                   Text(args.longDesc,
