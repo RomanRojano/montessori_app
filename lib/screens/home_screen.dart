@@ -12,6 +12,9 @@ class HomePageScreen extends StatelessWidget {
   selectConfiguracionScreen(BuildContext context) {
     Navigator.of(context).pushNamed(ConfiguracionScreen.routeName);
   }
+  selectHomePageScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(HomePageScreen.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../models/product.dart';
-import '../widgets/product_item.dart';
+//import '../widgets/product_item.dart';
 import '../screens/product_detail_screen.dart';
+import '../screens/product_multiple_detail_screen.dart';
 
 enum FilterOptions {
   SinLeer,
@@ -76,49 +78,55 @@ class ProductsOverviewScreen extends StatelessWidget {
               name: 'Campeones Liga Municipal',
               description: 'Abejitas gana la liga municipal 2019.',
               image:
-                  'http://tisdc.ddns.net:8000/static/montessori/img01.jpg',
-                  //'https://s3.amazonaws.com/uifaces/faces/twitter/namankreative/128.jpg',
+                  //'http://tisdc.ddns.net:8000/static/montessori/img01.jpg',
+                  'https://s3.amazonaws.com/uifaces/faces/twitter/namankreative/128.jpg',
               id: 1,
+              multiple: true,
             ),
             ProductBox(
               name: 'Majalca en Seattle',
               description: 'Destacada participacion de docentes en Seattle WA.',
               image:
-                  'http://tisdc.ddns.net:8000/static/montessori/img02.jpg',
-                  //'https://s3.amazonaws.com/uifaces/faces/twitter/sasha_shestakov/128.jpg',
+                  //'http://tisdc.ddns.net:8000/static/montessori/img02.jpg',
+                  'https://s3.amazonaws.com/uifaces/faces/twitter/sasha_shestakov/128.jpg',
               id: 2,
+              multiple: false,
             ),
             ProductBox(
               name: 'Conferencia Magna.',
               description: 'Habilidades de resilencia en la familia.',
               image:
-                  'http://tisdc.ddns.net:8000/static/montessori/img03.jpg',
-                  //'https://s3.amazonaws.com/uifaces/faces/twitter/matkins/128.jpg',
+                  //'http://tisdc.ddns.net:8000/static/montessori/img03.jpg',
+                  'https://s3.amazonaws.com/uifaces/faces/twitter/matkins/128.jpg',
               id: 3,
+              multiple: false,
             ),
             ProductBox(
               name: 'Pláticas Matutinas.',
               description: 'Lo que deberias saber sobre tu hijo.',
               image:
-                'http://tisdc.ddns.net:8000/static/montessori/img04.png',
-                  //'https://s3.amazonaws.com/uifaces/faces/twitter/manigm/128.jpg',
+                //'http://tisdc.ddns.net:8000/static/montessori/img04.png',
+                  'https://s3.amazonaws.com/uifaces/faces/twitter/manigm/128.jpg',
               id: 4,
+              multiple: false,
             ),
             ProductBox(
               name: 'Convocatoria Deportiva.',
               description: 'Invitación a integrar un equipo de soccer femenil.',
               image:
-              'http://tisdc.ddns.net:8000/static/montessori/img05.jpg',
-                  //'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
+              //'http://tisdc.ddns.net:8000/static/montessori/img05.jpg',
+                  'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
               id: 5,
+              multiple: false,
             ),
             ProductBox(
               name: 'Inicio de campaña.',
               description: 'Campaña nacional de reforestación.',
               image:
-                  'http://tisdc.ddns.net:8000/static/montessori/img06.jpg',
-                  //'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
+                  //'http://tisdc.ddns.net:8000/static/montessori/img06.jpg',
+                  'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
               id: 6,
+              multiple: false,
             ),
           ],
         ));
@@ -169,13 +177,14 @@ class _ReadBoxState extends State<ReadBox> {
 }
 
 class ProductBox extends StatelessWidget {
-  ProductBox({Key key, this.name, this.description, this.image, this.id})
+  ProductBox({Key key, this.name, this.description, this.image, this.id, this.multiple })
       : super(key: key);
 
   final String name;
   final String description;
   final String image;
   final int id;
+  final bool multiple;
 
   Widget build(BuildContext context) {
     return Container(
@@ -184,13 +193,26 @@ class ProductBox extends StatelessWidget {
         child: Card(
             child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
-                      arguments: ScreenArguments(
-                        this.name,
-                        this.description,
-                        'Esta es una descripcion muy larga que tiene varios renglones y que tiene toda la informacion a detalle de lo que se debe de informar',
-                        this.image,
-                      ));
+                  if (this.multiple) {
+                    Navigator.of(context).pushNamed(
+                        ProductMultipleDetailScreen.routeName,
+                        arguments: ScreenArguments(
+                          this.name,
+                          this.description,
+                          'Esta es una descripcion de multiple muy larga que tiene varios renglones y que tiene toda la informacion a detalle de lo que se debe de informar',
+                          this.image,
+                        ));
+                  }
+                  else {
+                    Navigator.of(context).pushNamed(
+                        ProductDetailScreen.routeName,
+                        arguments: ScreenArguments(
+                          this.name,
+                          this.description,
+                          'Esta es una descripcion muy larga que tiene varios renglones y que tiene toda la informacion a detalle de lo que se debe de informar',
+                          this.image,
+                        ));
+                  };
                 },
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

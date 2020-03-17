@@ -6,7 +6,7 @@ class Product {
   final String description;
   final double price;
   final String imageUrl;
-  bool isFavorite;
+  final bool multiple;
 
   Product({
     @required this.id,
@@ -14,6 +14,6 @@ class Product {
     @required this.description,
     @required this.price,
     @required this.imageUrl,
-    this.isFavorite = false,
+    @required this.multiple,
   });
 }

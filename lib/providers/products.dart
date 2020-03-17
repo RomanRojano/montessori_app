@@ -9,6 +9,7 @@ class Products with ChangeNotifier {
       description: 'Descripcion de Santa Cruz',
       price: 580,
       imageUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/namankreative/128.jpg',
+      multiple: true,
     ),
     Product(
       id: 'd2',
@@ -16,6 +17,7 @@ class Products with ChangeNotifier {
       description: 'Descripcion de Santa Monica',
       price: 580,
       imageUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/sasha_shestakov/128.jpg',
+      multiple:  false,
     ),
     Product(
       id: 'd3',
@@ -23,6 +25,7 @@ class Products with ChangeNotifier {
       description: 'Descripcion de Santa Maria',
       price: 580,
       imageUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/matkins/128.jpg',
+      multiple:  false,
     ),
     Product(
       id: 'd4',
@@ -30,6 +33,7 @@ class Products with ChangeNotifier {
       description: 'Descripcion de Santa Ana',
       price: 580,
       imageUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/manigm/128.jpg',
+      multiple:  false,
     ),
     Product(
       id: 'd5',
@@ -37,6 +41,7 @@ class Products with ChangeNotifier {
       description: 'Descripcion de Santa Patricia',
       price: 580,
       imageUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
+      multiple:  false,
     ),
   ];
 
