@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import '../screens/products_overview_screen.dart';
 import '../screens/Configuracion_Screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageScreen extends StatelessWidget {
 
   static const routeName = 'home-screen' ;
+  //final uuidController =TextEditingController(text:"");
+  static String uuidguardado = '';
   
   selectProductsOverview(BuildContext context) {
     Navigator.of(context).pushNamed(ProductsOverviewScreen.routeName);
@@ -18,6 +21,9 @@ class HomePageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    obtenerpreferencias();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Colégio Montessori de Chihuahua.'),
@@ -41,7 +47,7 @@ class HomePageScreen extends StatelessWidget {
                   color: Colors.yellow,
                 )
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 60),
               RaisedButton(
                 onPressed: () => selectProductsOverview(context),
                 textColor: Colors.white,
@@ -63,6 +69,15 @@ class HomePageScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 120),
+              Text('$uuidguardado',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.yellow,
+                ),
+              ),
             ],
           ),
         )
@@ -71,8 +86,16 @@ class HomePageScreen extends StatelessWidget {
         onPressed: () => selectConfiguracionScreen(context),
         tooltip: 'Configuración',
         child: Icon(Icons.settings),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: uuidguardado == 'SIN REGISTRO' ? Colors.red :Colors.lightBlue
       ),
     );
   }
+
+  Future obtenerpreferencias() async {
+    SharedPreferences preferences= await SharedPreferences.getInstance();
+    uuidguardado = preferences.getString('uuid') ?? 'SIN REGISTRO' ;
+  }
+
 }
+
+

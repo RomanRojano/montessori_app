@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import '../screens/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ConfiguracionScreen extends StatelessWidget {
 
   static const routeName = './configuracion';
+  
+  final uuidController =TextEditingController(text:"");
+  static String uuidguardado = '';
+
 
   selectHomePageScreen(BuildContext context) {
     Navigator.of(context).pushNamed(HomePageScreen.routeName);
   }
 
+  
   @override
   Widget build(BuildContext context) {
+  
+    obtenerpreferencias();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Identificación de la Familia.'),
@@ -33,11 +42,13 @@ class ConfiguracionScreen extends StatelessWidget {
                 padding: EdgeInsets.all(15.0),
                 child: TextField(
                   obscureText: false,
+                  style: TextStyle(fontSize: 14),
+                  controller: uuidController,
+                  keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.mail),
-                    border: OutlineInputBorder(
-                    ),
-                    labelText: 'Clave única de padre de familia',
+                    border: OutlineInputBorder(),
+                    labelText: uuidguardado == 'SIN REGISTRO' ? 'Clave única de padre de familia' : '$uuidguardado',
                   ),
                 ),
               ),
@@ -45,7 +56,10 @@ class ConfiguracionScreen extends StatelessWidget {
                 padding: EdgeInsets.all(15.0),
                 child:
                   RaisedButton(
-                    onPressed: () => selectHomePageScreen(context),
+                    onPressed: () {
+                      uuidGuardar() ;
+                      //selectHomePageScreen(context),
+                    },
                     child: Text('Ragistrame'),
                     color: Colors.white,
                   ),
@@ -56,4 +70,16 @@ class ConfiguracionScreen extends StatelessWidget {
       ),
     );
   }
+
+ Future obtenerpreferencias() async {
+    SharedPreferences preferences= await SharedPreferences.getInstance();
+    uuidguardado = preferences.getString('uuid') ?? 'SIN REGISTRO' ;
+    uuidController.text = uuidguardado ;
+  }
+  uuidGuardar() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    preferences.setString("uuid", uuidController.text);
+  }
+
 }
