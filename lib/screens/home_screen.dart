@@ -2,29 +2,84 @@ import 'package:flutter/material.dart';
 import '../screens/products_overview_screen.dart';
 import '../screens/Configuracion_Screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
 
-class HomePageScreen extends StatelessWidget {
+class HomePageScreen extends StatefulWidget {
+  HomePageScreen({Key key, this.title}) : super(key: key);
 
-  static const routeName = 'home-screen' ;
-  //final uuidController =TextEditingController(text:"");
-  static String uuidguardado = '';
-  
-  selectProductsOverview(BuildContext context) {
-    Navigator.of(context).pushNamed(ProductsOverviewScreen.routeName);
-  }
-  selectConfiguracionScreen(BuildContext context) {
-    Navigator.of(context).pushNamed(ConfiguracionScreen.routeName);
-  }
-  selectHomePageScreen(BuildContext context) {
-    Navigator.of(context).pushNamed(HomePageScreen.routeName);
-  }
+  final String title;
+  static const routeName = 'home-screen';
 
   @override
-  Widget build(BuildContext context) {
+  _HomePageScreen createState() => _HomePageScreen();
+}
 
-    obtenerpreferencias();
+ class _HomePageScreen extends State<HomePageScreen> {
+   String uuid = '';
+   String nombre = '';
+   Map data ;
+   List usersData;
 
-    return Scaffold(
+   selectProductsOverview(BuildContext context) {
+     Navigator.of(context).pushNamed(ProductsOverviewScreen.routeName);
+   }
+   selectConfiguracionScreen(BuildContext context) {
+     Navigator.of(context).pushNamed(ConfiguracionScreen.routeName);
+   }
+   selectHomePageScreen(BuildContext context) {
+     Navigator.of(context).pushNamed(HomePageScreen.routeName);
+   }
+
+   @override
+   void initState() {
+     super.initState();
+     _inicializa();
+   }
+
+   Future _inicializa() async {
+     String uuid = await obtenerpreferencias();
+     this.uuid = uuid ;
+     if (uuid != 'SIN UUID'){
+       String nombre = await obtenerNombre(uuid);
+       this.nombre = nombre;
+     }else{
+       nombre = 'SIN REGISTRO';
+     }
+   }
+
+   Future<String> obtenerpreferencias() async {
+     final preferences= await SharedPreferences.getInstance();
+     final uuid_g = preferences.getString('uuid');
+     if (uuid_g == null){
+       return 'SIN UUID';
+     }
+     return uuid_g;
+   }
+
+   Future<String> obtenerNombre(String uuid_in) async {
+     http.Response response =  await http.get(
+         Uri.encodeFull('http://192.168.20.10:8000/api/montessori/usuario/$uuid_in'),
+         headers: {
+           "Accept": "application/json"
+         }
+     );
+     if (response.statusCode == 200){
+       data = jsonDecode(response.body);
+       setState(() {
+         usersData = data['recordset']['recordset'];
+       });
+       return usersData[0]["nombre"].trim();
+     } else {
+       return '';
+     }
+   }
+
+   @override
+   Widget build(BuildContext context) {
+
+     return Scaffold(
       appBar: AppBar(
         title: Text('Colégio Montessori de Chihuahua.'),
       ),
@@ -70,7 +125,7 @@ class HomePageScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 120),
-              Text('$uuidguardado',
+              Text('$nombre',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -86,14 +141,9 @@ class HomePageScreen extends StatelessWidget {
         onPressed: () => selectConfiguracionScreen(context),
         tooltip: 'Configuración',
         child: Icon(Icons.settings),
-        backgroundColor: uuidguardado == 'SIN REGISTRO' ? Colors.red :Colors.lightBlue
+        backgroundColor: uuid == 'SIN REGISTRO' ? Colors.red :Colors.lightBlue
       ),
     );
-  }
-
-  Future obtenerpreferencias() async {
-    SharedPreferences preferences= await SharedPreferences.getInstance();
-    uuidguardado = preferences.getString('uuid') ?? 'SIN REGISTRO' ;
   }
 
 }

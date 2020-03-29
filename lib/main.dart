@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       builder: (ctx) => Products(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'ECommerce',
+        title: 'Montessori',
         theme: ThemeData (
           primarySwatch: Colors.blue,
           accentColor: Colors.grey,
