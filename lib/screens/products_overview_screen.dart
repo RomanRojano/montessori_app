@@ -1,59 +1,17 @@
 import 'package:flutter/material.dart';
-
 import '../models/product.dart';
-//import '../widgets/product_item.dart';
 import '../screens/product_detail_screen.dart';
 import '../screens/product_multiple_detail_screen.dart';
+import '../screens/product_Map_detail.dart';
+
 
 enum FilterOptions {
   SinLeer,
   Todo,
 }
 
-class ProductsOverviewScreen extends StatelessWidget {
+ class ProductsOverviewScreen extends StatelessWidget {
   static const routeName = 'products-overview-screen';
-
-  final List<Product> loadedProducts = [
-    Product(
-      id: 'd1',
-      title: 'Santa Cruz',
-      description: 'Descripcion de Santa Cruz',
-      price: 580,
-      imageUrl:
-          'https://s3.amazonaws.com/uifaces/faces/twitter/namankreative/128.jpg',
-    ),
-    Product(
-      id: 'd2',
-      title: 'Santa Monica',
-      description: 'Descripcion de Santa Monica',
-      price: 580,
-      imageUrl:
-          'https://s3.amazonaws.com/uifaces/faces/twitter/sasha_shestakov/128.jpg',
-    ),
-    Product(
-      id: 'd3',
-      title: 'Santa Maria',
-      description: 'Descripcion de Santa Maria',
-      price: 580,
-      imageUrl:
-          'https://s3.amazonaws.com/uifaces/faces/twitter/matkins/128.jpg',
-    ),
-    Product(
-      id: 'd4',
-      title: 'Santa Ana',
-      description: 'Descripcion de Santa Ana',
-      price: 580,
-      imageUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/manigm/128.jpg',
-    ),
-    Product(
-      id: 'd5',
-      title: 'Santa Patricia',
-      description: 'Descripcion de Santa Patricia',
-      price: 580,
-      imageUrl:
-          'https://s3.amazonaws.com/uifaces/faces/twitter/jay_wilburn/128.jpg',
-    )
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +135,8 @@ class _ReadBoxState extends State<ReadBox> {
 }
 
 class ProductBox extends StatelessWidget {
-  ProductBox({Key key, this.name, this.description, this.image, this.id, this.multiple })
+  ProductBox(
+      {Key key, this.name, this.description, this.image, this.id, this.multiple })
       : super(key: key);
 
   final String name;
@@ -223,7 +182,7 @@ class ProductBox extends StatelessWidget {
                               padding: EdgeInsets.all(5),
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Text(this.name,
                                       style: TextStyle(
@@ -234,13 +193,14 @@ class ProductBox extends StatelessWidget {
                               )))
                     ]))));
   }
-}
 
-class ScreenArguments {
-  final String name;
-  final String description;
-  final String longDesc;
-  final String image;
-
-  ScreenArguments(this.name, this.description,this.longDesc, this.image);
 }
+  class ScreenArguments {
+    final String name;
+    final String description;
+    final String longDesc;
+    final String image;
+
+    ScreenArguments(this.name, this.description,this.longDesc, this.image);
+  }
+

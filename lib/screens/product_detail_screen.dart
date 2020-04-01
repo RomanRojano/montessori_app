@@ -1,5 +1,3 @@
-//import 'dart:js';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:montessori_app/screens/products_overview_screen.dart';
